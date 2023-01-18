@@ -11,6 +11,9 @@ def home(request):
     data["time_of_day"] = time
     return render(request, "home.html", context=data)
 
+def results(request):
+    results_data = dict()
+    return render(request, "results.html", context = results_data)
 
 """def maintenance(request):
     maintenance_data = dict()
@@ -25,3 +28,5 @@ def home(request):
     except:
         pass
     return render(request, "maintenance.html", context=maintenance_data)"""
+
+
