@@ -12,6 +12,13 @@ The current time is: {{ time_of_day }}
 <p></p>
 <img src='{% static "ClassApp/CBSLogo.png" %}'>
 
+<form action="" method="get">
+    <input type="text" id="ingredients" name="selection">
+    <label for="ingredients">Update the list of ingredients</label><br>
+    <input name="form_submitted" value="1" type="hidden">
+    <input name="update" value="Do selected action" type="submit">
+</form>
+
 </body>
 
 </html>
