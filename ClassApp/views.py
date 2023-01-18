@@ -9,24 +9,30 @@ def home(request):
     time = datetime.datetime.now()
     print(time)
     data["time_of_day"] = time
+
+    ingredients_data = dict()
+    choice = 'NONE'
+    try:
+        choice = request.GET['selection']
+        choice = [choice]
+        return HttpResponseRedirect(reverse(choice))
+    except:
+        pass
     return render(request, "home.html", context=data)
 
 def results(request):
     results_data = dict()
     return render(request, "results.html", context = results_data)
 
-"""def maintenance(request):
+def maintenance(request):
     maintenance_data = dict()
+    choice = 'NONE'
     try:
         choice = request.GET['selection']
-        if choice == "currencies":
-            support_functions.add_currencies(support_functions.get_currency_list())
-            c_list = Currency.objects.all()
-            print("Got c_list", len(c_list))
-            data['currencies'] = c_list
-            return HttpResponseRedirect(reverse('currencies'))
+        choice = [choice]
     except:
         pass
-    return render(request, "maintenance.html", context=maintenance_data)"""
+    print(choice)
+    return render(request, "maintenance.html", context=maintenance_data)
 
 
