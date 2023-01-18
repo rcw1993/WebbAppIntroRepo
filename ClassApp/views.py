@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 # Create your views here.
 def home(request):
@@ -7,6 +9,19 @@ def home(request):
     time = datetime.datetime.now()
     print(time)
     data["time_of_day"] = time
-    #diff = timedelta(hour=-5)
-    #data["time_of_day"].hour = (data["time_of_day"].hour + 7) % 12
     return render(request, "home.html", context=data)
+
+
+"""def maintenance(request):
+    maintenance_data = dict()
+    try:
+        choice = request.GET['selection']
+        if choice == "currencies":
+            support_functions.add_currencies(support_functions.get_currency_list())
+            c_list = Currency.objects.all()
+            print("Got c_list", len(c_list))
+            data['currencies'] = c_list
+            return HttpResponseRedirect(reverse('currencies'))
+    except:
+        pass
+    return render(request, "maintenance.html", context=maintenance_data)"""
