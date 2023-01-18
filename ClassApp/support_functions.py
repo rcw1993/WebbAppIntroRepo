@@ -1,33 +1,37 @@
-def get_recipe_options(user_ingredients, all_recipes, exempt_ingredients):
+def get_recipe_options(user_ingredients, all_recipes):
+    exempt_ingredients = get_exempt_ingredients()
     recipe_list = list()
     # suggested_list = list()
-    for one_recipe in all_recipes:                              # "one_recipe" is each recipe
-        ingredient_score = 0                                    # initialize ingredient score
-        registered_ingredients = []                             # initialize list of registered ingredients
-        for one_ingredient in one_recipe.ingredients:           # iterate through all ingredients in the recipe
+    for one_recipe in all_recipes:  # "one_recipe" is each recipe
+        ingredient_score = 0  # initialize ingredient score
+        registered_ingredients = []  # initialize list of registered ingredients
+        for one_ingredient in one_recipe.ingredients:  # iterate through all ingredients in the recipe
 
-            appended_flag = 0                                   # lower the appended flag
+            appended_flag = 0  # lower the appended flag
             # DETERMINE IF USER HAS ALL THE INGREDIENTS FOR A RECIPE
             for user_ingredient in user_ingredients:
-                parts = user_ingredient.split()                 # separate user ingredients into words
-                real_ingredient = parts[len(parts) - 1]         # ingredient name is last part of user ingredient
-                if real_ingredient in one_ingredient:           # if the user ingredient is a recipe ingredient
-                    ingredient_score += 1                       # increment the ingredient score
+                parts = user_ingredient.split()  # separate user ingredients into words
+                real_ingredient = parts[len(parts) - 1]  # ingredient name is last part of user ingredient
+                if real_ingredient in one_ingredient:  # if the user ingredient is a recipe ingredient
+                    ingredient_score += 1  # increment the ingredient score
                     registered_ingredients.append(real_ingredient)  # add the ingredient to registered ingredients list
-                    appended_flag = 1                           # raise the appended flag if the ingredient is there
+                    appended_flag = 1  # raise the appended flag if the ingredient is there
 
-            if appended_flag == 0:                  # if the appended flag is lowered, the ingredient is not available
-                raw_ingredient = one_ingredient.split()         # raw_ingredient is split name of the needed ingredient
-                if raw_ingredient[len(raw_ingredient) - 1] in exempt_ingredients:   # if the ingredient is exempt
-                    ingredient_score += 1                       # increment the ingredient score
+            if appended_flag == 0:  # if the appended flag is lowered, the ingredient is not available
+                raw_ingredient = one_ingredient.split()  # raw_ingredient is split name of the needed ingredient
+                if raw_ingredient[len(raw_ingredient) - 1] in exempt_ingredients:  # if the ingredient is exempt
+                    ingredient_score += 1  # increment the ingredient score
 
         # CHECK THAT USER HAS INGREDIENTS
-        if ingredient_score == len(one_recipe.ingredients):     # if the ingredient score is the number of ingredients
-            recipe_list.append(one_recipe)                      # add the recipe to the list of approved recipes
+        if ingredient_score == len(one_recipe.ingredients):  # if the ingredient score is the number of ingredients
+            recipe_list.append(one_recipe)  # add the recipe to the list of approved recipes
 
     return recipe_list
 
 
+def get_exempt_ingredients():
+    exempt_ingredients_list = ['salt', 'pepper', 'spray', 'basil', 'oil', 'butter', 'vinegar', 'sugar', 'flour']
+    return exempt_ingredients_list
 
 
 """from ClassApp.models import Currency
