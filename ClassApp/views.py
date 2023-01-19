@@ -33,8 +33,11 @@ def results(request):
     data = dict()
     choice = 'NONE'
     # adding another comment
-    tester = ['hello', 'strawberry']
+    tester = ['hello', 'strawberry','toys','chicken', 'vinegar']
+    csvfile = request.FILES['myapp/dataframe_upload.csv']
+    print(csvfile)
     try:
+        recipe_match = []
         choice = request.GET['selection']
         choice = [choice]
         data['selection'] = choice
@@ -42,10 +45,13 @@ def results(request):
         # Printing this to display in console that we can access form data
         print(choice)
         # Simple logic to show we can create logic with our form data
-        if choice[0] == tester[0]:
-            print("Yes all ingredients here")
-        else:
-            print('Need more ingredients')
+        for i in choice:
+            if i in tester:
+                recipe_match.append(tester)
+            else:
+                print('Need more ingredients')
+                data['recipe_match'] = ['No Recipes Found']
+        data['recipe_match'] = recipe_match
         return HttpResponseRedirect(reverse('selection'))# how to add this back to page
     except:
         pass
