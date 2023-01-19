@@ -1,48 +1,12 @@
-<!--{ % extends "base.html" %}
-{ % load static %}
-{ % block content %}
+{% extends "base.html" %}
+{% block content %}
 
-    This is my <span style = "color:blue">amazing</span> home page DADDY :)
-    <p></p>
-    The current time is: { { time_of_day }}
-    <p></p>
-    <img src='{ % static "ClassApp/CBSLogo.png" %}'>
-
-    <form action="" method="get">
-        <input type="text" id="ingredients" name="selection">
-        <label for="ingredients">Update the list of ingredients</label><br>
-        <input name="form_submitted" value="1" type="hidden">
-        <input name="update" value="Search for recipes" type="submit">
-    </form>
-
-    <h1>Welcome. The time now is { { time_of_day }}</h1>
-    Please select an action
-    <p>
-        <a href="{ % url 'maintenance' %}">Visit maintenance page</a><br>
-    </p>
-{ %  endblock %} -->
-
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-This is my <span style = "color:blue">amazing</span> home page DADDY :)
-<p></p>
-The current time is: {{ time_of_day }}
-<p></p>
-<img src='{% static "ClassApp/CBSLogo.png" %}'>
-
-<form action="" method="get">
-    <input type="text" id="ingredients" name="selection">
-    <label for="ingredients">Update the list of ingredients</label><br>
-    <input name="form_submitted" value="1" type="hidden">
-    <input name="update" value="Search for recipes" type="submit">
+<form class="form-inline" method="get">
+  <div class="form-group">
+    <label for="ingredients">Ingredients:</label>
+    <input type="text" class="form-control" id="ingredients" name="selection">
+  </div>
+  <button type="submit" class="btn btn-default" name="update">Search for recipes</button>
 </form>
 
-</body>
-
-</html>
+{% endblock %}
