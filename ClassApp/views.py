@@ -15,7 +15,8 @@ def home(request):
     tester = ['hello','strawberry']
     try:
         choice = request.GET['selection']
-        data['selection'] = request.GET['selection']
+        choice=[choice]
+        data['selection'] = choice
         #Printing this to display in console that we can access form data
         print(choice)
         #Simple logic to show we can create logic with our form data
