@@ -1,12 +1,12 @@
-{% extends "base.html" %}
-{% load static %}
-{% block content %}
+<!--{ % extends "base.html" %}
+{ % load static %}
+{ % block content %}
 
     This is my <span style = "color:blue">amazing</span> home page DADDY :)
     <p></p>
-    The current time is: {{ time_of_day }}
+    The current time is: { { time_of_day }}
     <p></p>
-    <img src='{% static "ClassApp/CBSLogo.png" %}' alt="">
+    <img src='{ % static "ClassApp/CBSLogo.png" %}'>
 
     <form action="" method="get">
         <input type="text" id="ingredients" name="selection">
@@ -15,15 +15,14 @@
         <input name="update" value="Search for recipes" type="submit">
     </form>
 
-    <h1>Welcome. The time now is {{ time_of_day }}</h1>
+    <h1>Welcome. The time now is { { time_of_day }}</h1>
     Please select an action
     <p>
-        <a href="{% url 'maintenance' %}">Visit maintenance page</a><br>
+        <a href="{ % url 'maintenance' %}">Visit maintenance page</a><br>
     </p>
-{%  endblock %}
+{ %  endblock %} -->
 
-<!--
-% load static %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,9 +32,9 @@
 <body>
 This is my <span style = "color:blue">amazing</span> home page DADDY :)
 <p></p>
-The current time is: { time_of_day }}
+The current time is: {{ time_of_day }}
 <p></p>
-<img src='% static "ClassApp/CBSLogo.png" %}'>
+<img src='{% static "ClassApp/CBSLogo.png" %}'>
 
 <form action="" method="get">
     <input type="text" id="ingredients" name="selection">
@@ -46,4 +45,4 @@ The current time is: { time_of_day }}
 
 </body>
 
-</html> -->
+</html>
