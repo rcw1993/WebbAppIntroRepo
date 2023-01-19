@@ -1,0 +1,33 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img src='{% static "myapp/myapplogo.png" %}' alt="image" width="400px">
+<h1>Recipe</h1>
+
+<form action="" method="get">
+    <input type="text" id="ingredients" name="selection">
+    <label for="ingredients">Update the list of ingredients</label><br>
+    <input name="form_submitted" value="1" type="hidden">
+    <input name="update" value="Do selected action" type="submit">
+</form>
+
+
+<table>
+    <tr>
+        <th>Selection</th>
+        <th>Long Name</th>
+    </tr>
+    {% for c in selection %}
+    <tr>
+    <td>{{c}}</td><td>{{c}}</td>
+    {% endfor %}
+</table>
+</body>
+</html>

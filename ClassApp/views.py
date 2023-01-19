@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
+
 # Create your views here.
 def home(request):
     data = dict()
@@ -14,20 +15,37 @@ def home(request):
     tester = ['hello','strawberry']
     try:
         choice = request.GET['selection']
-        choice = [choice]
+        data['selection'] = request.GET['selection']
         #Printing this to display in console that we can access form data
         print(choice)
         #Simple logic to show we can create logic with our form data
         if choice[0] == tester[0]:
             print("Yes all ingredients here")
-        return HttpResponseRedirect(reverse(choice))            #how to add this back to page
+        else:
+            print('Need more ingredients')
+        return render(request,'results.html',context=data)            #how to add this back to page
     except:
         pass
     return render(request, "home.html", context=data)
 
 def results(request):
-    results_data = dict()
-    return render(request, "results.html", context = results_data)
+    data = dict()
+    choice = 'NONE'
+    tester = ['hello', 'strawberry']
+    try:
+        choice = request.GET['selection']
+        data['selection'] = request.GET['selection']
+        # Printing this to display in console that we can access form data
+        print(choice)
+        # Simple logic to show we can create logic with our form data
+        if choice[0] == tester[0]:
+            print("Yes all ingredients here")
+        else:
+            print('Need more ingredients')
+        return HttpResponseRedirect(reverse('selection'))# how to add this back to page
+    except:
+        pass
+    return render(request, "results.html", context = data)
 
 #TRYING SOMETHING HERE
 
