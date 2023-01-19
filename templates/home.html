@@ -1,11 +1,12 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
 
     This is my <span style = "color:blue">amazing</span> home page DADDY :)
     <p></p>
     The current time is: {{ time_of_day }}
     <p></p>
-    <img src='{% static "ClassApp/CBSLogo.png" %}'>
+    <img src='{% static "ClassApp/CBSLogo.png" %}' alt="">
 
     <form action="" method="get">
         <input type="text" id="ingredients" name="selection">

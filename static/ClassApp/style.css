@@ -15,3 +15,8 @@ h2 {
     text-align: center;
     font-size: medium;
 }
+
+.large-font { /* use with class="large-font" */
+   font-size: large;
+   color: blue;
+}
