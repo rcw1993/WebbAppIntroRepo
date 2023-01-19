@@ -85,7 +85,7 @@ WSGI_APPLICATION = "NewApp.wsgi.application"
 }"""
 
 DATABASES = {
-        'default': dj_database_url.config(default="postgresql://postgres:postgres@localhost:5432/tanmayeb-myapp")
+        'default': dj_database_url.config(default="postgresql://postgres:postgres@localhost:5432/rcw2153-webapps1")
                                           }
 
 
