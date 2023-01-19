@@ -31,6 +31,7 @@ def home(request):
 def results(request):
     data = dict()
     choice = 'NONE'
+    # adding another comment
     tester = ['hello', 'strawberry']
     try:
         choice = request.GET['selection']
