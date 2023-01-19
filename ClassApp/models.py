@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Currency(models.Model):
@@ -44,3 +45,11 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.title + " " + str(self.ingredients) + " " + self.instructions + " " + self.image
+
+class AccountHolder(models.Model):
+    user=models.OneToOneField(User, on_delete=models.CASCADE)
+    email = models.EmailField()
+    def __str__(self):
+        return self.user.username
+    def __repr__(self):
+        return self.user.username

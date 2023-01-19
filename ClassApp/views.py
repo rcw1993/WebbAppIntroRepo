@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from ClassApp.models import AccountHolder
+from django.contrib.auth.forms import UserCreationForm
 
 from ClassApp.support_functions import import_from_menu, get_recipe_options
 
@@ -103,4 +105,15 @@ def maintenance(request):
     print(choice)
     return render(request, "maintenance.html", context=maintenance_data)
 
-
+def register_new_user(request):
+    context = dict()
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+        new_user = form.save()
+        acct_holder = AccountHolder(user=new_user)
+        acct_holder.save()
+        return render(request,"home.html",context=dict())
+    else:
+        form = UserCreationForm()
+        context['form'] = form
+        return render(request, "registration/register.html", context)
