@@ -38,6 +38,7 @@ class Recipe(models.Model):
         self.ingredients = ()
     instructions = models.CharField(max_length=5000)
     image = models.CharField(max_length=5000)
+
     def __repr__(self):
         return str(self.id_num) + " " + self.title + " " + str(self.ingredients) + " " + self.instructions + " " + self.image
 

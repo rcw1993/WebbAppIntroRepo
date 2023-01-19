@@ -38,7 +38,6 @@ def results(request):
     # adding another comment
     # tester = ['hello', 'strawberry']
 
-
     try:
         choice = request.GET['selection']
         choice = [choice]
