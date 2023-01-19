@@ -31,17 +31,15 @@ class Rates(models.Model):
         return self.currency.iso + " " + self.x_currency + " " + str(self.rate)
 
 
-"""class Recipe(models.Model):
+class Recipe(models.Model):
+    id_num = models.IntegerField(default=0)
     title = models.CharField(max_length=50)
-    ingredients = models.ManyToManyField(str)
+    def __init__(self):
+        self.ingredients = ()
     instructions = models.CharField(max_length=5000)
     image = models.CharField(max_length=5000)
-    cleaned_ingredients = models.ManyToManyField(str)
-
     def __repr__(self):
-        return self.title + " " + self.ingredients + " " + self.instructions + " " + self.image + " " + \
-            self.cleaned_ingredients
+        return str(self.id_num) + " " + self.title + " " + str(self.ingredients) + " " + self.instructions + " " + self.image
 
     def __str__(self):
-        return self.title + " " + self.ingredients + " " + self.instructions + " " + self.image + " " + \
-            self.cleaned_ingredients"""
+        return self.title + " " + str(self.ingredients) + " " + self.instructions + " " + self.image

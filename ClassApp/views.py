@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
+from ClassApp.support_functions import import_from_menu, get_recipe_options
+
 
 # Create your views here.
 def home(request):
@@ -12,33 +14,11 @@ def home(request):
     data["time_of_day"] = time
     ingredients_data = dict()
     choice = 'NONE'
-    tester = ['hello','strawberry']
+    tester = ['hello', 'strawberry']
     try:
         choice = request.GET['selection']
         choice=[choice]
         data['selection'] = choice
-        #Printing this to display in console that we can access form data
-        print(choice)
-        #Simple logic to show we can create logic with our form data
-        if choice[0] == tester[0]:
-            print("Yes all ingredients here")
-        else:
-            print('Need more ingredients')
-        return render(request,'results.html',context=data)            #how to add this back to page
-    except:
-        pass
-    return render(request, "home.html", context=data)
-
-def results(request):
-    data = dict()
-    choice = 'NONE'
-    # adding another comment
-    tester = ['hello', 'strawberry']
-    try:
-        choice = request.GET['selection']
-        choice = [choice]
-        data['selection'] = choice
-        print (data['selection'])
         # Printing this to display in console that we can access form data
         print(choice)
         # Simple logic to show we can create logic with our form data
@@ -46,10 +26,40 @@ def results(request):
             print("Yes all ingredients here")
         else:
             print('Need more ingredients')
-        return HttpResponseRedirect(reverse('selection'))# how to add this back to page
+        return render(request, 'results.html', context=data)            # how to add this back to page
     except:
         pass
-    return render(request, "results.html", context = data)
+    return render(request, "home.html", context=data)
+
+
+def results(request):
+    data = dict()
+    choice = 'NONE'
+    # adding another comment
+    # tester = ['hello', 'strawberry']
+
+
+    try:
+        choice = request.GET['selection']
+        choice = [choice]
+
+        recipe_list = import_from_menu()
+        selected_recipes = get_recipe_options(choice, recipe_list)
+        data['selection'] = choice
+        data['selected_recipes']=selected_recipes
+        print(data['selection'])
+        print(data['selected_recipes'])
+        # Printing this to display in console that we can access form data
+        print(choice)
+        # Simple logic to show we can create logic with our form data
+        if choice[0] == tester[0]:
+            print("Yes all ingredients here")
+        else:
+            print('Need more ingredients')
+        return render(request, "results.html", context=data)
+    except:
+        pass
+    return render(request, "results.html", context=data)
 
 #TRYING SOMETHING HERE
 
@@ -76,6 +86,12 @@ def home_view(request):
     print(data)
     return render(request, 'home.html', {'data': data})
 '''
+
+
+def selected_recipe(request):
+    selected_data = dict()
+    return render(request, "selected_recipe.html", context=selected_data)
+
 
 def maintenance(request):
     maintenance_data = dict()
